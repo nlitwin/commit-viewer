@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import { fetchCommits } from './api.js'
 
 class App extends Component {
   constructor(props) {
@@ -17,21 +18,27 @@ class App extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     try {
-      let response = await fetch(`https://api.github.com/users/${this.state.username}/repos`)
-        .then(response => response.json())
+      await fetchCommits(this.state.username)
         .then(response => {
           this.setState({ response })
         })
     } catch(e) {
-      alert(e)
+      console.log(e)
     }
   }
   
   render() {
     let listItems = []
     if (this.state.response) {
-      listItems = this.state.response.map(repo => {
-        return <li key={repo.name}>{repo.name}</li>
+      listItems = this.state.response.map((record, i) => {
+        return (
+          <li key={i}>
+            <a href={record.html_url} target="_blank">{record.sha.slice(0, 7)}</a>
+            - <span>{record.commit.message}</span><br/>
+            by <span><a href={record.author.html_url} target="_blank">{record.commit.author.name}</a></span>
+            at <span class="date">{record.commit.author.date}</span>
+          </li>
+        )
       })
     }
     
