@@ -36,7 +36,7 @@ class App extends Component {
             <a href={record.html_url} target="_blank">{record.sha.slice(0, 7)}</a>
             - <span>{record.commit.message}</span><br/>
             by <span><a href={record.author.html_url} target="_blank">{record.commit.author.name}</a></span>
-            at <span class="date">{record.commit.author.date}</span>
+            at <span className="date">{record.commit.author.date}</span>
           </li>
         )
       })
