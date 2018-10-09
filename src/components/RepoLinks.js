@@ -7,8 +7,22 @@ class RepoLinks extends Component {
     this.state = {
       selectedRepos: []
     }
+    this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this)
+    this.searchForCommits = this.searchForCommits.bind(this)
   }
 
+  handleCheckboxSelect(event) {
+    let selectedRepos = this.state.selectedRepos
+    if (event.target.checked) {
+      selectedRepos = [...selectedRepos, event.target.value]
+    } else {
+      selectedRepos = selectedRepos.filter(v => v !== event.target.value)
+    }
+    this.setState({
+      selectedRepos
+    })
+  }
+  
   render() {
     let repoNames = []
     
