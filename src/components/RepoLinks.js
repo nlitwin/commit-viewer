@@ -35,12 +35,11 @@ class RepoLinks extends Component {
       repoNames = this.props.repos.map((name, i) => {
         const inputId = `repo-checkbox-${i}`
         return (
-          <label htmlFor={inputId}>
+          <label htmlFor={inputId} key={i}>
             {name}':'
             <input
               type="checkbox"
               id={inputId}
-              key={i}
               value={name}
               onChange={this.handleCheckboxSelect}
             />
