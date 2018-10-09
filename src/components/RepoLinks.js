@@ -23,6 +23,11 @@ class RepoLinks extends Component {
     })
   }
   
+  searchForCommits() {
+    const reposToSearch = this.state.isAllReposSelected ? this.props.repos : this.state.selectedRepos 
+    this.props.onReposSelect(reposToSearch)
+  }
+  
   render() {
     let repoNames = []
     
