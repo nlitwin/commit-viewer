@@ -36,7 +36,7 @@ class RepoLinks extends Component {
         const inputId = `repo-checkbox-${i}`
         return (
           <label htmlFor={inputId} key={i}>
-            {name}':'
+            {name}:
             <input
               type="checkbox"
               id={inputId}
