@@ -18,6 +18,6 @@ export function fetchRepositories(username, options=baseOptions) {
   return fetchJSON(`${API}/users/${username}/repos`, options)
 }
 
-export function fetchCommits(username, repo='commit-viewer', options=baseOptions) {
+export function fetchCommits(username, repo, options=baseOptions) {
   return fetchJSON(`${API}/repos/${username}/${repo}/commits`, options)
 }
