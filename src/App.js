@@ -22,6 +22,7 @@ class App extends Component {
   }
 
   handleReposSelect(selectedRepos) {
+    this.setState({ records: [] })
     selectedRepos.forEach(repoName => {
       fetchCommits(this.state.username, repoName)
         .then(records => {
