@@ -32,8 +32,10 @@ class RepoLinks extends Component {
     let repoNames = []
     
     if (this.props.repos.length) {
+      // TODO: Use just repo name, or does the username need to be the 1st part of full_name?
       repoNames = this.props.repos.map((name, i) => {
         const inputId = `repo-checkbox-${i}`
+        // TODO: Move to <RepoLink>
         return (
           <label htmlFor={inputId} key={i}>
             {name}:
