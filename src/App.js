@@ -23,6 +23,7 @@ class App extends Component {
 
   handleReposSelect(selectedRepos) {
     this.setState({ records: [] })
+    
     selectedRepos.forEach(repoName => {
       fetchCommits(this.state.username, repoName)
         .then(records => {
@@ -33,7 +34,7 @@ class App extends Component {
     })
   }
   
-  async handleUsernameSubmit(event) {
+  async handleUsernameSubmit() {
     try {
       const repos = await fetchRepositories(this.state.username)
       this.setState({ repos })
