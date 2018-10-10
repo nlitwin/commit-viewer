@@ -5,18 +5,18 @@ class RepoLinks extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedRepos: []
+      selectedRepos: new Set()
     }
     this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this)
     this.searchForCommits = this.searchForCommits.bind(this)
   }
 
   handleCheckboxSelect(event) {
-    let selectedRepos = this.state.selectedRepos
+    let selectedRepos = new Set(this.state.selectedRepos)
     if (event.target.checked) {
-      selectedRepos = [...selectedRepos, event.target.value]
+      selectedRepos.add(event.target.value)
     } else {
-      selectedRepos = selectedRepos.filter(v => v !== event.target.value)
+      selectedRepos.delete(event.target.value)
     }
     this.setState({
       selectedRepos
@@ -41,6 +41,7 @@ class RepoLinks extends Component {
               type="checkbox"
               id={inputId}
               value={name}
+              checked={this.state.selectedRepos.has(name)}
               onChange={this.handleCheckboxSelect}
             />
           </label>
