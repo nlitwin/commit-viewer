@@ -23,5 +23,9 @@ export function fetchRepositories(username, options=baseHeaders) {
 }
 
 export function fetchCommits(username, repo, options=baseHeaders) {
+  const data = { author: username }
+  const payload = createPayload({
+    body: JSON.stringify(data)
+  })
   return fetchJSON(`${API}/repos/${username}/${repo}/commits`, options)
 }
