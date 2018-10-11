@@ -10,6 +10,13 @@ function createPayload(options={}) {
   return Object.assign({}, baseHeaders, options)
 }
 
+function getQueryString(params) {
+  var esc = encodeURIComponent;
+  return Object.keys(params)
+    .map(k => `${esc(k)}=${esc(params[k])}`)
+    .join('&');
+}
+
 async function fetchJSON(url, options) {
   const response = await fetch(url, options)
   if (response.ok) {
