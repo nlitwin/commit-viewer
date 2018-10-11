@@ -30,5 +30,5 @@ export function fetchCommits(username, repo, options=baseHeaders) {
   const payload = createPayload({
     body: JSON.stringify(data)
   })
-  return fetchJSON(`${API}/repos/${username}/${repo}/commits`, options)
+  return fetchJSON(`${API}/repos/${username}/${repo}/commits`, payload)
 }
