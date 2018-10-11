@@ -22,10 +22,12 @@ async function fetchJSON(url, options) {
 }
 
 export function fetchRepositories(username, options=baseHeaders) {
+  // https://developer.github.com/v3/repos/#list-user-repositories
   return fetchJSON(`${API}/users/${username}/repos`, options)
 }
 
 export function fetchCommits(username, repo, options=baseHeaders) {
+  // https://developer.github.com/v3/repos/commits/
   const data = { author: username }
   if (options.since) data.since = options.since
   if (options.until) data.until = options.until
