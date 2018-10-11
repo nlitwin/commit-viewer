@@ -72,6 +72,7 @@ class App extends Component {
           onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          isOutsideRange={() => false}
         />
         <header className="App-header">
           <h1 className="App-title">What did I work on?</h1>
