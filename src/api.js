@@ -6,6 +6,10 @@ const baseHeaders = {
   }
 };
 
+function createPayload(options={}) {
+  return Object.assign({}, baseHeaders, options)
+}
+
 async function fetchJSON(url, options) {
   const response = await fetch(url, options)
   if (response.ok) {
