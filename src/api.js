@@ -6,10 +6,6 @@ const baseHeaders = {
   }
 };
 
-function createPayload(options={}) {
-  return Object.assign({}, baseHeaders, options)
-}
-
 function getQueryString(params) {
   var esc = encodeURIComponent;
   return Object.keys(params)
