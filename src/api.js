@@ -24,6 +24,9 @@ export function fetchRepositories(username, options=baseHeaders) {
 
 export function fetchCommits(username, repo, options=baseHeaders) {
   const data = { author: username }
+  if (options.since) data.since = options.since
+  if (options.until) data.until = options.until
+
   const payload = createPayload({
     body: JSON.stringify(data)
   })
