@@ -29,7 +29,10 @@ class App extends Component {
     this.setState({ records: [] })
     
     selectedRepos.forEach(repoName => {
-      fetchCommits(this.state.username, repoName)
+      fetchCommits(this.state.username, repoName, {
+        since: this.state.startDate.format(),
+        until: this.state.endDate.format()
+      })
         .then(records => {
           this.setState({
             records: this.state.records.concat(records)
@@ -72,6 +75,7 @@ class App extends Component {
           onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
           onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          isOutsideRange={() => false}
         />
         <header className="App-header">
           <h1 className="App-title">What did I work on?</h1>

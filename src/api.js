@@ -1,10 +1,21 @@
 const API = 'https://api.github.com'
-const baseOptions = {
+const baseHeaders = {
   headers: {
     Accept: 'application/vnd.github.v3+json',
     'Content-Type': 'application/json',
   }
 };
+
+function createPayload(options={}) {
+  return Object.assign({}, baseHeaders, options)
+}
+
+function getQueryString(params) {
+  var esc = encodeURIComponent;
+  return Object.keys(params)
+    .map(k => `${esc(k)}=${esc(params[k])}`)
+    .join('&');
+}
 
 async function fetchJSON(url, options) {
   const response = await fetch(url, options)
@@ -14,10 +25,14 @@ async function fetchJSON(url, options) {
   throw new Error(`Status ${response.status} (${response.statusText})`)
 }
 
-export function fetchRepositories(username, options=baseOptions) {
+export function fetchRepositories(username, options=baseHeaders) {
   return fetchJSON(`${API}/users/${username}/repos`, options)
 }
 
-export function fetchCommits(username, repo, options=baseOptions) {
-  return fetchJSON(`${API}/repos/${username}/${repo}/commits`, options)
+export function fetchCommits(username, repo, options=baseHeaders) {
+  const data = { author: username }
+  if (options.since) data.since = options.since
+  if (options.until) data.until = options.until
+
+  return fetchJSON(`${API}/repos/${username}/${repo}/commits?${getQueryString(data)}`, options)
 }
