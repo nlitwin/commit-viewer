@@ -1,5 +1,5 @@
 const API = 'https://api.github.com'
-const baseOptions = {
+const baseHeaders = {
   headers: {
     Accept: 'application/vnd.github.v3+json',
     'Content-Type': 'application/json',
@@ -14,10 +14,10 @@ async function fetchJSON(url, options) {
   throw new Error(`Status ${response.status} (${response.statusText})`)
 }
 
-export function fetchRepositories(username, options=baseOptions) {
+export function fetchRepositories(username, options=baseHeaders) {
   return fetchJSON(`${API}/users/${username}/repos`, options)
 }
 
-export function fetchCommits(username, repo, options=baseOptions) {
+export function fetchCommits(username, repo, options=baseHeaders) {
   return fetchJSON(`${API}/repos/${username}/${repo}/commits`, options)
 }
