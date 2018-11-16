@@ -18,6 +18,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "venv": "python3 -m venv venv",
+    "pipinstall": "pip3 install -r requirements.txt",
+    "server": "export FLASK_APP='./server/app.py'; python3 -m flask run"
   }
 }
